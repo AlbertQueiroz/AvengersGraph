@@ -9,7 +9,7 @@ import Foundation
 
 class AdjacencyList <T: Hashable>: Graph {
 
-    private var adjancencies: [Vertex<T>: [Edge<T>]] = [:]
+    var adjancencies: [Vertex<T>: [Edge<T>]] = [:]
 
     init() {}
 
@@ -27,7 +27,6 @@ class AdjacencyList <T: Hashable>: Graph {
         adjancencies[source]?.append(edge)
 
     }
-
 
     func addUndirectedEdge(between source: Vertex<T>, and destination: Vertex<T>) {
 
@@ -52,22 +51,22 @@ class AdjacencyList <T: Hashable>: Graph {
     }
 
 }
-
-extension AdjacencyList: CustomStringConvertible {
-    public var description: String {
-        var result = ""
-        for (vertex, edges) in adjancencies { // 1
-            var edgeString = ""
-            for (index, edge) in edges.enumerated() { // 2
-                if index != edges.count - 1 {
-                    edgeString.append("\(edge.destination), ")
-                } else {
-                    edgeString.append("\(edge.destination)")
-                }
-            }
-            result.append("\(vertex) ---> [ \(edgeString) ]\n") // 3
-        }
-        return result
-    }
-
-}
+//
+//extension AdjacencyList: CustomStringConvertible {
+//    public var description: String {
+//        var result = ""
+//        for (vertex, edges) in adjancencies { // 1
+//            var edgeString = ""
+//            for (index, edge) in edges.enumerated() { // 2
+//                if index != edges.count - 1 {
+//                    edgeString.append("\(edge.destination), ")
+//                } else {
+//                    edgeString.append("\(edge.destination)")
+//                }
+//            }
+//            result.append("\(vertex) ---> [ \(edgeString) ]\n") // 3
+//        }
+//        return result
+//    }
+//
+//}

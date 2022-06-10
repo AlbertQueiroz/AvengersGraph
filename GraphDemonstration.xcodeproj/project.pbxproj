@@ -16,6 +16,7 @@
 		95E438592853831100D6A5A3 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E438582853831100D6A5A3 /* Edge.swift */; };
 		95E4385B2853832700D6A5A3 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4385A2853832700D6A5A3 /* Vertex.swift */; };
 		95E4385D2853834B00D6A5A3 /* AdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */; };
+		95E43861285388EB00D6A5A3 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E43860285388EB00D6A5A3 /* CircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		95E438582853831100D6A5A3 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		95E4385A2853832700D6A5A3 /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacencyList.swift; sourceTree = "<group>"; };
+		95E43860285388EB00D6A5A3 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				95E4384128537ED200D6A5A3 /* GraphViewController.swift */,
+				95E43860285388EB00D6A5A3 /* CircleView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E43861285388EB00D6A5A3 /* CircleView.swift in Sources */,
 				95E43857285382E800D6A5A3 /* Graph.swift in Sources */,
 				95E4384228537ED200D6A5A3 /* GraphViewController.swift in Sources */,
 				95E4383E28537ED200D6A5A3 /* AppDelegate.swift in Sources */,
