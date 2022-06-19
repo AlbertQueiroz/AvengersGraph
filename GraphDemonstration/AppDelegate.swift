@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         let window = UIWindow()
-        let graphController = FormViewController()
+        let graphController = FormViewController(type: .from)
         let navigation = UINavigationController(rootViewController: graphController)
         window.rootViewController = navigation
         window.makeKeyAndVisible()

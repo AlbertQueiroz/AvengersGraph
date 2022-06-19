@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		950F615D285E9CC6007FF469 /* SwiftGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 950F615C285E9CC6007FF469 /* SwiftGraph */; };
+		952230D2285F85EC004F4173 /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952230D1285F85EC004F4173 /* FormData.swift */; };
 		95E4383E28537ED200D6A5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4383D28537ED200D6A5A3 /* AppDelegate.swift */; };
 		95E4384028537ED200D6A5A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4383F28537ED200D6A5A3 /* SceneDelegate.swift */; };
 		95E4384228537ED200D6A5A3 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4384128537ED200D6A5A3 /* FormViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		952230D1285F85EC004F4173 /* FormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormData.swift; sourceTree = "<group>"; };
 		95E4383A28537ED200D6A5A3 /* GraphDemonstration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphDemonstration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E4383D28537ED200D6A5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95E4383F28537ED200D6A5A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				95E438582853831100D6A5A3 /* Edge.swift */,
 				95E4385A2853832700D6A5A3 /* Vertex.swift */,
 				95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */,
+				952230D1285F85EC004F4173 /* FormData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				95E43861285388EB00D6A5A3 /* CircleView.swift in Sources */,
 				95E43857285382E800D6A5A3 /* Graph.swift in Sources */,
+				952230D2285F85EC004F4173 /* FormData.swift in Sources */,
 				95E4384228537ED200D6A5A3 /* FormViewController.swift in Sources */,
 				95E4383E28537ED200D6A5A3 /* AppDelegate.swift in Sources */,
 				95E438592853831100D6A5A3 /* Edge.swift in Sources */,
