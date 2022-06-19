@@ -87,13 +87,19 @@ class FormViewController: UIViewController {
 
     private let graph = AdjacencyList<String>()
 
+    private var resultFromDijkstra: BestWay?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupComponents()
         createGraph()
         plotGraph()
-        dijkstra(root: "Porangabussu", destination: "Virgílio Távora")
+        
+        resultFromDijkstra = dijkstra(root: "Parangaba",
+                                      destination: "Virgílio Távora")
+        print(resultFromDijkstra!.minimumTime)
+        print(resultFromDijkstra!.route)
     }
 
     private func setupComponents() {
