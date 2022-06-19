@@ -93,6 +93,7 @@ class FormViewController: UIViewController {
         setupComponents()
         createGraph()
         plotGraph()
+        dijkstra(root: "Porangabussu", destination: "Virgílio Távora")
     }
 
     private func setupComponents() {
@@ -107,7 +108,12 @@ class FormViewController: UIViewController {
         navigationController?.pushViewController(FormViewController(), animated: true)
     }
 
-    private func createGraph() {}
+    private func createGraph() {
+        addEdgesVLTLine()
+        addEdgesWestLine()
+        addEdgesEastLine()
+        addEdgesSouthLine()
+    }
 
     private func plotGraph() {}
 }
@@ -177,4 +183,97 @@ extension FormViewController: UIPickerViewDataSource {
         return subwayGraph[row]
     }
 
+}
+
+// MARK: EDGES
+extension FormViewController {
+    // MARK: Linha Sul
+    func addEdgesSouthLine() {
+        subwayGraph.addEdge(from: "LS - Xico da Silva", to: "José de Alencar", weight: 2)
+        subwayGraph.addEdge(from: "José de Alencar", to: "São Benedito", weight: 2)
+        subwayGraph.addEdge(from: "São Benedito", to: "Benfica", weight: 2)
+        subwayGraph.addEdge(from: "Benfica", to: "Padre Cícero", weight: 2)
+        subwayGraph.addEdge(from: "Padre Cícero", to: "Porangabussu", weight: 1)
+        subwayGraph.addEdge(from: "Porangabussu", to: "Couto Fernandes", weight: 2)
+        subwayGraph.addEdge(from: "Couto Fernandes", to: "Juscelino Kubitscheck", weight: 1)
+        subwayGraph.addEdge(from: "Juscelino Kubitscheck", to: "Parangaba", weight: 2)
+        subwayGraph.addEdge(from: "Parangaba", to: "Vila Pery", weight: 2)
+        subwayGraph.addEdge(from: "Vila Pery", to: "Manoel Sátiro", weight: 2)
+        subwayGraph.addEdge(from: "Manoel Sátiro", to: "Mondubim", weight: 2)
+        subwayGraph.addEdge(from: "Mondubim", to: "Esperança", weight: 2)
+        subwayGraph.addEdge(from: "Esperança", to: "Aracapé", weight: 2)
+        subwayGraph.addEdge(from: "Aracapé", to: "Alto Alegre", weight: 2)
+        subwayGraph.addEdge(from: "Alto Alegre", to: "Rachel de Queiroz", weight: 2)
+        subwayGraph.addEdge(from: "Rachel de Queiroz", to: "Virgílio Távora", weight: 3)
+        subwayGraph.addEdge(from: "Virgílio Távora", to: "Maracanaú", weight: 2)
+        subwayGraph.addEdge(from: "Maracanaú", to: "Jereissati", weight: 1)
+        subwayGraph.addEdge(from: "Jereissati", to: "Cartlito Benevides", weight: 2)
+    }
+
+    // MARK: Linha Oeste
+    func addEdgesWestLine() {
+        subwayGraph.addEdge(from: "LS - Xico da Silva", to: "LO -Moura Brasil", weight: 1)
+        subwayGraph.addEdge(from: "LO -Moura Brasil", to: "Álvaro Weyne", weight: 7)
+        subwayGraph.addEdge(from: "Álvaro Weyne", to: "Padre Andrade", weight: 4)
+        subwayGraph.addEdge(from: "Padre Andrade", to: "Antônio Bezerra", weight: 3)
+        subwayGraph.addEdge(from: "Antônio Bezerra", to: "São Miguel", weight: 7)
+        subwayGraph.addEdge(from: "São Miguel", to: "Parque Albano", weight: 3)
+        subwayGraph.addEdge(from: "Parque Albano", to: "Conjunto Ceará", weight: 3)
+        subwayGraph.addEdge(from: "Conjunto Ceará", to: "Jurema", weight: 3)
+        subwayGraph.addEdge(from: "Jurema", to: "Araturi", weight: 4)
+        subwayGraph.addEdge(from: "Araturi", to: "Caucaia", weight: 6)
+    }
+
+    // Centro - Papicu - 15 min
+    // MARK: Linha Leste
+    func addEdgesEastLine() {
+        subwayGraph.addEdge(from: "LS - Xico da Silva", to: "LL - Sé", weight: 3)
+        subwayGraph.addEdge(from: "LL - Sé", to: "Colégio Militar", weight: 3)
+        subwayGraph.addEdge(from: "Colégio Militar", to: "Luiza Távora", weight: 3)
+        subwayGraph.addEdge(from: "Luiza Távora", to: "Nunes Valente", weight: 2)
+        subwayGraph.addEdge(from: "Nunes Valente", to: "Leonardo Mota", weight: 1)
+        subwayGraph.addEdge(from: "Leonardo Mota", to: "Papicu", weight: 3)
+        subwayGraph.addEdge(from: "Papicu", to: "H.G.F", weight: 2)
+        subwayGraph.addEdge(from: "H.G.F", to: "Cidade 2000", weight: 3)
+        subwayGraph.addEdge(from: "Cidade 2000", to: "Bárbara de Alencar", weight: 6)
+        subwayGraph.addEdge(from: "Bárbara de Alencar", to: "CEC", weight: 2)
+        subwayGraph.addEdge(from: "CEC", to: "Edson Queiroz", weight: 2)
+    }
+
+    // MARK: VLT Parangaba-Mucuripe
+    func addEdgesVLTLine() {
+        subwayGraph.addEdge(from: "Parangaba", to: "VLT PM - Montese", weight: 3)
+        subwayGraph.addEdge(from: "VLT PM - Montese", to: "Vila União", weight: 4)
+        subwayGraph.addEdge(from: "Vila União", to: "Borges de Melo", weight: 4)
+        subwayGraph.addEdge(from: "Borges de Melo", to: "S. João do Tauape", weight: 4)
+        subwayGraph.addEdge(from: "S. João do Tauape", to: "Pontes Vieira", weight: 5)
+        subwayGraph.addEdge(from: "Pontes Vieira", to: "Antônio Sales", weight: 3)
+        subwayGraph.addEdge(from: "Antônio Sales", to: "Papicu", weight: 4)
+        subwayGraph.addEdge(from: "Papicu", to: "Mucuripe", weight: 4)
+        subwayGraph.addEdge(from: "Mucuripe", to: "Iate", weight: 3)
+    }
+}
+
+// MARK: SETUP GRAPH
+extension FormViewController {
+    func dijkstra(root: String, destination: String) -> BestWay {
+        let (weights, pathDict) = subwayGraph.dijkstra(root: root, startDistance: 0)
+        let weightFromRootToVertice: [String: Int?] = distanceArrayToVertexDict(distances: weights,
+                                                                                  graph: subwayGraph)
+ 
+        
+        let minimumTimeResult = weightFromRootToVertice[destination] as? Int
+        let pathResult: [WeightedEdge<Int>] = pathDictToPath(from: subwayGraph.indexOfVertex(root)!, to: subwayGraph.indexOfVertex(destination)!, pathDict: pathDict)
+        let stops: [String] = subwayGraph.edgesToVertices(edges: pathResult)
+
+        
+        let result = BestWay(minimumTime: minimumTimeResult!, route: stops)
+        return result
+    }
+}
+
+// MARK: Model for Result
+struct BestWay {
+    let minimumTime: Int
+    let route: [String]
 }
