@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950F615D285E9CC6007FF469 /* SwiftGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 950F615C285E9CC6007FF469 /* SwiftGraph */; };
 		95E4383E28537ED200D6A5A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4383D28537ED200D6A5A3 /* AppDelegate.swift */; };
 		95E4384028537ED200D6A5A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4383F28537ED200D6A5A3 /* SceneDelegate.swift */; };
-		95E4384228537ED200D6A5A3 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4384128537ED200D6A5A3 /* GraphViewController.swift */; };
+		95E4384228537ED200D6A5A3 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4384128537ED200D6A5A3 /* FormViewController.swift */; };
 		95E4384728537ED600D6A5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95E4384628537ED600D6A5A3 /* Assets.xcassets */; };
 		95E4384A28537ED600D6A5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E4384828537ED600D6A5A3 /* LaunchScreen.storyboard */; };
 		95E43857285382E800D6A5A3 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E43856285382E800D6A5A3 /* Graph.swift */; };
@@ -23,7 +24,7 @@
 		95E4383A28537ED200D6A5A3 /* GraphDemonstration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphDemonstration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E4383D28537ED200D6A5A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95E4383F28537ED200D6A5A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		95E4384128537ED200D6A5A3 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		95E4384128537ED200D6A5A3 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		95E4384628537ED600D6A5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95E4384928537ED600D6A5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95E4384B28537ED600D6A5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950F615D285E9CC6007FF469 /* SwiftGraph in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +97,7 @@
 		95E43853285382B800D6A5A3 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				95E4384128537ED200D6A5A3 /* GraphViewController.swift */,
+				95E4384128537ED200D6A5A3 /* FormViewController.swift */,
 				95E43860285388EB00D6A5A3 /* CircleView.swift */,
 			);
 			path = Presentation;
@@ -135,6 +137,9 @@
 			dependencies = (
 			);
 			name = GraphDemonstration;
+			packageProductDependencies = (
+				950F615C285E9CC6007FF469 /* SwiftGraph */,
+			);
 			productName = GraphDemonstration;
 			productReference = 95E4383A28537ED200D6A5A3 /* GraphDemonstration.app */;
 			productType = "com.apple.product-type.application";
@@ -163,6 +168,9 @@
 				Base,
 			);
 			mainGroup = 95E4383128537ED200D6A5A3;
+			packageReferences = (
+				950F615B285E9CC6007FF469 /* XCRemoteSwiftPackageReference "SwiftGraph" */,
+			);
 			productRefGroup = 95E4383B28537ED200D6A5A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,7 +199,7 @@
 			files = (
 				95E43861285388EB00D6A5A3 /* CircleView.swift in Sources */,
 				95E43857285382E800D6A5A3 /* Graph.swift in Sources */,
-				95E4384228537ED200D6A5A3 /* GraphViewController.swift in Sources */,
+				95E4384228537ED200D6A5A3 /* FormViewController.swift in Sources */,
 				95E4383E28537ED200D6A5A3 /* AppDelegate.swift in Sources */,
 				95E438592853831100D6A5A3 /* Edge.swift in Sources */,
 				95E4385D2853834B00D6A5A3 /* AdjacencyList.swift in Sources */,
@@ -404,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		950F615B285E9CC6007FF469 /* XCRemoteSwiftPackageReference "SwiftGraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davecom/SwiftGraph.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		950F615C285E9CC6007FF469 /* SwiftGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 950F615B285E9CC6007FF469 /* XCRemoteSwiftPackageReference "SwiftGraph" */;
+			productName = SwiftGraph;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 95E4383228537ED200D6A5A3 /* Project object */;
 }
