@@ -8,7 +8,6 @@
 import UIKit
 import SwiftGraph
 
-
 class FormViewController: UIViewController {
     enum FormType {
         case from
@@ -85,7 +84,7 @@ class FormViewController: UIViewController {
     private lazy var indicatorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = type == .result ? "Paradas:" : "Estação:"
+        label.text = "Estação:"
         label.font = .systemFont(ofSize: 24, weight: .medium)
         return label
     }()
@@ -140,7 +139,6 @@ class FormViewController: UIViewController {
     }()
 
     private var currentPickerValue: String?
-    private let graph = AdjacencyList<String>()
 
     init(type: FormType) {
         self.type = type
@@ -165,7 +163,7 @@ class FormViewController: UIViewController {
     private func setupComponents() {
         setupNavigation()
         setupHeaderImage()
-        setupIndicatorLabel()
+        setupIndicatorLabelIfNeeded()
         setupPickerViewIfNeeded()
         setupResultLabelIfNeeded()
         setupTableViewIfNeeded()
@@ -244,7 +242,8 @@ extension FormViewController {
         ])
     }
 
-    private func setupIndicatorLabel() {
+    private func setupIndicatorLabelIfNeeded() {
+        guard type != .result else { return }
         view.addSubview(indicatorLabel)
         NSLayoutConstraint.activate([
             indicatorLabel.topAnchor.constraint(equalTo: headerImage.bottomAnchor),
@@ -285,8 +284,7 @@ extension FormViewController {
         guard type == .result else { return }
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([
-            resultLabel.topAnchor.constraint(equalTo: indicatorLabel.bottomAnchor),
-//            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resultLabel.topAnchor.constraint(equalTo: headerImage.bottomAnchor),
             resultLabel.heightAnchor.constraint(equalToConstant: 32),
             resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
@@ -444,12 +442,17 @@ extension FormViewController {
 extension FormViewController {
     func dijkstra(root: String, destination: String) -> ResultDijkstra {
         let (weights, pathDict) = subwayGraph.dijkstra(root: root, startDistance: 0)
-        let weightFromRootToVertice: [String: Int?] = distanceArrayToVertexDict(distances: weights,
-                                                                                  graph: subwayGraph)
- 
+        let weightFromRootToVertice: [String: Int?] = distanceArrayToVertexDict(
+            distances: weights,
+            graph: subwayGraph
+        )
         
         let minimumTimeResult = weightFromRootToVertice[destination] as? Int
-        let pathResult: [WeightedEdge<Int>] = pathDictToPath(from: subwayGraph.indexOfVertex(root)!, to: subwayGraph.indexOfVertex(destination)!, pathDict: pathDict)
+        let pathResult: [WeightedEdge<Int>] = pathDictToPath(
+            from: subwayGraph.indexOfVertex(root)!,
+            to: subwayGraph.indexOfVertex(destination)!,
+            pathDict: pathDict
+        )
         let stops: [String] = subwayGraph.edgesToVertices(edges: pathResult)
         
         if let minimumTime = minimumTimeResult {

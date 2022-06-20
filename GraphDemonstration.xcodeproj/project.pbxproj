@@ -14,11 +14,6 @@
 		95E4384228537ED200D6A5A3 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4384128537ED200D6A5A3 /* FormViewController.swift */; };
 		95E4384728537ED600D6A5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95E4384628537ED600D6A5A3 /* Assets.xcassets */; };
 		95E4384A28537ED600D6A5A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95E4384828537ED600D6A5A3 /* LaunchScreen.storyboard */; };
-		95E43857285382E800D6A5A3 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E43856285382E800D6A5A3 /* Graph.swift */; };
-		95E438592853831100D6A5A3 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E438582853831100D6A5A3 /* Edge.swift */; };
-		95E4385B2853832700D6A5A3 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4385A2853832700D6A5A3 /* Vertex.swift */; };
-		95E4385D2853834B00D6A5A3 /* AdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */; };
-		95E43861285388EB00D6A5A3 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E43860285388EB00D6A5A3 /* CircleView.swift */; };
 		E6DB3BFE285FCFA100E30E85 /* ResultDijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB3BFD285FCFA100E30E85 /* ResultDijkstra.swift */; };
 		E6DB3C00286025AD00E30E85 /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB3BFF286025AD00E30E85 /* FormTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -32,11 +27,8 @@
 		95E4384628537ED600D6A5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95E4384928537ED600D6A5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95E4384B28537ED600D6A5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95E43856285382E800D6A5A3 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		95E438582853831100D6A5A3 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
-		95E4385A2853832700D6A5A3 /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacencyList.swift; sourceTree = "<group>"; };
-		95E43860285388EB00D6A5A3 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		E6DB3BFD285FCFA100E30E85 /* ResultDijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDijkstra.swift; sourceTree = "<group>"; };
 		E6DB3BFF286025AD00E30E85 /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,11 +45,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		952230D32860E1CA004F4173 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				95E438582853831100D6A5A3 /* Edge.swift */,
+				95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		95E4383128537ED200D6A5A3 = {
 			isa = PBXGroup;
 			children = (
 				95E4383C28537ED200D6A5A3 /* GraphDemonstration */,
 				95E4383B28537ED200D6A5A3 /* Products */,
+				952230D32860E1CA004F4173 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				95E4384128537ED200D6A5A3 /* FormViewController.swift */,
-				95E43860285388EB00D6A5A3 /* CircleView.swift */,
 				E6DB3BFF286025AD00E30E85 /* FormTableViewCell.swift */,
 			);
 			path = Presentation;
@@ -113,9 +114,6 @@
 		95E43854285382CE00D6A5A3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				95E438582853831100D6A5A3 /* Edge.swift */,
-				95E4385A2853832700D6A5A3 /* Vertex.swift */,
-				95E4385C2853834B00D6A5A3 /* AdjacencyList.swift */,
 				952230D1285F85EC004F4173 /* FormData.swift */,
 				E6DB3BFD285FCFA100E30E85 /* ResultDijkstra.swift */,
 			);
@@ -125,7 +123,6 @@
 		95E43855285382E000D6A5A3 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				95E43856285382E800D6A5A3 /* Graph.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -206,17 +203,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95E43861285388EB00D6A5A3 /* CircleView.swift in Sources */,
-				95E43857285382E800D6A5A3 /* Graph.swift in Sources */,
 				952230D2285F85EC004F4173 /* FormData.swift in Sources */,
 				95E4384228537ED200D6A5A3 /* FormViewController.swift in Sources */,
 				E6DB3C00286025AD00E30E85 /* FormTableViewCell.swift in Sources */,
 				95E4383E28537ED200D6A5A3 /* AppDelegate.swift in Sources */,
-				95E438592853831100D6A5A3 /* Edge.swift in Sources */,
 				E6DB3BFE285FCFA100E30E85 /* ResultDijkstra.swift in Sources */,
-				95E4385D2853834B00D6A5A3 /* AdjacencyList.swift in Sources */,
 				95E4384028537ED200D6A5A3 /* SceneDelegate.swift in Sources */,
-				95E4385B2853832700D6A5A3 /* Vertex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
