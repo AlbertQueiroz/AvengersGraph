@@ -101,8 +101,23 @@ class FormViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 0.70)
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
         label.textAlignment = .center
         label.text = formData.result
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 0.70)
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        label.textAlignment = .center
+        label.text = "\(resultFromDijkstra.minimumTime) minutos"
         label.numberOfLines = 0
         return label
     }()
@@ -256,7 +271,7 @@ extension FormViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: resultLabel.bottomAnchor,
+            tableView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor,
                                            constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -273,8 +288,16 @@ extension FormViewController {
             resultLabel.topAnchor.constraint(equalTo: indicatorLabel.bottomAnchor),
 //            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             resultLabel.heightAnchor.constraint(equalToConstant: 32),
-            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
+        
+        view.addSubview(timeLabel)
+        NSLayoutConstraint.activate([
+            timeLabel.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 4),
+            timeLabel.heightAnchor.constraint(equalToConstant: 32),
+            timeLabel.widthAnchor.constraint(equalToConstant: 150),
+            timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
@@ -422,7 +445,9 @@ extension FormViewController {
         let pathResult: [WeightedEdge<Int>] = pathDictToPath(from: subwayGraph.indexOfVertex(root)!, to: subwayGraph.indexOfVertex(destination)!, pathDict: pathDict)
         let stops: [String] = subwayGraph.edgesToVertices(edges: pathResult)
         
-        resultFromDijkstra.minimumTime = minimumTimeResult!
+        if let minimumTime = minimumTimeResult {
+            resultFromDijkstra.minimumTime = minimumTime
+        }
         resultFromDijkstra.route = stops
         
         return resultFromDijkstra
