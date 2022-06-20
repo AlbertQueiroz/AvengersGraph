@@ -162,7 +162,7 @@ class FormViewController: UIViewController {
 
     private func setupComponents() {
         setupNavigation()
-        setupHeaderImage()
+        setupHeaderImageIfNeeded()
         setupIndicatorLabelIfNeeded()
         setupPickerViewIfNeeded()
         setupResultLabelIfNeeded()
@@ -232,7 +232,8 @@ extension FormViewController {
         navigationItem.rightBarButtonItem = next
     }
 
-    private func setupHeaderImage() {
+    private func setupHeaderImageIfNeeded() {
+        guard type != .result else { return }
         view.addSubview(headerImage)
         NSLayoutConstraint.activate([
             headerImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -284,7 +285,7 @@ extension FormViewController {
         guard type == .result else { return }
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([
-            resultLabel.topAnchor.constraint(equalTo: headerImage.bottomAnchor),
+            resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             resultLabel.heightAnchor.constraint(equalToConstant: 32),
             resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
