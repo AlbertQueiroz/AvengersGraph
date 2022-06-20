@@ -8,7 +8,6 @@
 import UIKit
 import SwiftGraph
 
-
 class FormViewController: UIViewController {
     enum FormType {
         case from
@@ -105,7 +104,6 @@ class FormViewController: UIViewController {
     }()
 
     private var currentPickerValue: String?
-    private let graph = AdjacencyList<String>()
 
     init(type: FormType) {
         self.type = type
@@ -335,15 +333,18 @@ extension FormViewController {
 extension FormViewController {
     func dijkstra(root: String, destination: String) -> BestWay {
         let (weights, pathDict) = subwayGraph.dijkstra(root: root, startDistance: 0)
-        let weightFromRootToVertice: [String: Int?] = distanceArrayToVertexDict(distances: weights,
-                                                                                  graph: subwayGraph)
- 
+        let weightFromRootToVertice: [String: Int?] = distanceArrayToVertexDict(
+            distances: weights,
+            graph: subwayGraph
+        )
         
         let minimumTimeResult = weightFromRootToVertice[destination] as? Int
-        let pathResult: [WeightedEdge<Int>] = pathDictToPath(from: subwayGraph.indexOfVertex(root)!, to: subwayGraph.indexOfVertex(destination)!, pathDict: pathDict)
+        let pathResult: [WeightedEdge<Int>] = pathDictToPath(
+            from: subwayGraph.indexOfVertex(root)!,
+            to: subwayGraph.indexOfVertex(destination)!,
+            pathDict: pathDict
+        )
         let stops: [String] = subwayGraph.edgesToVertices(edges: pathResult)
-
-        
         let result = BestWay(minimumTime: minimumTimeResult!, route: stops)
         return result
     }
