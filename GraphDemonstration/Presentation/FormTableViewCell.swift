@@ -61,6 +61,12 @@ class FormTableViewCell: UITableViewCell {
         return view
     }()
     
+    enum TypeOfStop {
+        case boarding
+        case landing
+        case integration
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -97,13 +103,17 @@ class FormTableViewCell: UITableViewCell {
         ])
     }
 
-    func setupColorBg(isBoarding: Bool) {
-        if isBoarding {
-            bgTitleView.backgroundColor = UIColor(red: 1.00, green: 0.98, blue: 0.65, alpha: 1.00)
-            titleLabel.textColor = UIColor(red: 0.90, green: 0.51, blue: 0.00, alpha: 1.00)
-        } else {
+    func setupColorBg(typeOfStop: TypeOfStop) {
+        switch typeOfStop {
+        case .boarding:
+            bgTitleView.backgroundColor = UIColor(red: 0.71, green: 0.84, blue: 1.00, alpha: 1.00)
+            titleLabel.textColor = UIColor(red: 0.00, green: 0.45, blue: 1.00, alpha: 1.00)
+        case .landing:
             bgTitleView.backgroundColor = UIColor(red: 0.71, green: 0.88, blue: 0.59, alpha: 1.00)
             titleLabel.textColor = UIColor(red: 0.10, green: 0.33, blue: 0.10, alpha: 1.00)
+        case .integration:
+            bgTitleView.backgroundColor = UIColor(red: 1.00, green: 0.98, blue: 0.65, alpha: 1.00)
+            titleLabel.textColor = UIColor(red: 0.90, green: 0.51, blue: 0.00, alpha: 1.00)
         }
     }
 }

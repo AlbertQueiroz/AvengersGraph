@@ -341,14 +341,21 @@ extension FormViewController: UITableViewDelegate, UITableViewDataSource {
             cell.titleLabel.text = "Embarque"
             cell.stopLabel.text = resultFromDijkstra.route[indexPath.row]
             cell.bgTitleView.isHidden = false
-            cell.setupColorBg(isBoarding: true)
+            cell.setupColorBg(typeOfStop: .boarding)
         case resultFromDijkstra.route.count - 1:
             cell.titleLabel.text = "Desembarque"
             cell.stopLabel.text = resultFromDijkstra.route[indexPath.row]
             cell.bgTitleView.isHidden = false
-            cell.setupColorBg(isBoarding: false)
+            cell.setupColorBg(typeOfStop: .landing)
         default:
-            cell.bgTitleView.isHidden = true
+            if let labelInfo = verifyStop(indexStop: indexStop!) {
+                cell.titleLabel.text = labelInfo
+                cell.bgTitleView.isHidden = false
+                cell.setupColorBg(typeOfStop: .integration)
+            } else {
+                cell.bgTitleView.isHidden = true
+            }
+
             cell.stopLabel.text = resultFromDijkstra.route[indexPath.row]
         }
         
@@ -468,5 +475,15 @@ extension FormViewController {
         }
         
         return ("", UIColor.black)
+    }
+
+    func verifyStop(indexStop: Int) -> String? {
+        let integrationStop = [0, 8, 36]
+        
+        if integrationStop.contains(indexStop) {
+            return "Integração"
+        }
+        
+        return nil
     }
 }
