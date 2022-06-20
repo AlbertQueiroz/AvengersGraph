@@ -13,7 +13,7 @@ final class FormData {
     public var from: String?
     public var to: String?
     public var result: String? {
-        "\(from ?? "") -> \(to ?? "")"
+        "\(from ?? "") → \(to ?? "")"
     }
 
     private init (){}

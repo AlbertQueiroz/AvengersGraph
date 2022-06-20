@@ -84,7 +84,7 @@ class FormViewController: UIViewController {
     private lazy var indicatorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = type == .result ? "Paradas:" : "Estação:"
+        label.text = "Estação:"
         label.font = .systemFont(ofSize: 24, weight: .medium)
         return label
     }()
@@ -98,9 +98,44 @@ class FormViewController: UIViewController {
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 0.70)
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        label.textAlignment = .center
         label.text = formData.result
         label.numberOfLines = 0
         return label
+    }()
+    
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.97, alpha: 0.70)
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        label.textAlignment = .center
+        label.text = "\(resultFromDijkstra.minimumTime) minutos"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var tableView: UITableView = {
+        var tableView = UITableView(frame: .zero, style: .insetGrouped)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .white
+        tableView.separatorInset = .zero
+        tableView.showsVerticalScrollIndicator = false
+        tableView.register(FormTableViewCell.self, forCellReuseIdentifier: "FormTableViewCell")
+
+        if #available(iOS 15, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        return tableView
     }()
 
     private var currentPickerValue: String?
@@ -114,7 +149,7 @@ class FormViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private var resultFromDijkstra: BestWay?
+    private var resultFromDijkstra = ResultDijkstra.instance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,19 +158,15 @@ class FormViewController: UIViewController {
         setupComponents()
         createGraph()
         plotGraph()
-        
-        resultFromDijkstra = dijkstra(root: "Parangaba",
-                                      destination: "Virgílio Távora")
-        print(resultFromDijkstra!.minimumTime)
-        print(resultFromDijkstra!.route)
     }
 
     private func setupComponents() {
         setupNavigation()
         setupHeaderImage()
-        setupIndicatorLabel()
+        setupIndicatorLabelIfNeeded()
         setupPickerViewIfNeeded()
         setupResultLabelIfNeeded()
+        setupTableViewIfNeeded()
     }
 
     @objc private func nextTapped() {
@@ -147,6 +178,11 @@ class FormViewController: UIViewController {
         case .to:
             nextType = .result
             formData.to = currentPickerValue
+            
+            guard let from = formData.from else { return }
+            guard let to = formData.to else { return }
+            resultFromDijkstra = dijkstra(root: from,
+                                          destination: to)
         case .result:
             navigationController?.popToRootViewController(animated: true)
             return
@@ -172,6 +208,7 @@ extension FormViewController {
     private func setupNavigation() {
         navigationController?.navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = UIColor(red: 0.10, green: 0.33, blue: 0.10, alpha: 1.00)
         setupNextButton()
     }
 
@@ -205,7 +242,8 @@ extension FormViewController {
         ])
     }
 
-    private func setupIndicatorLabel() {
+    private func setupIndicatorLabelIfNeeded() {
+        guard type != .result else { return }
         view.addSubview(indicatorLabel)
         NSLayoutConstraint.activate([
             indicatorLabel.topAnchor.constraint(equalTo: headerImage.bottomAnchor),
@@ -226,15 +264,38 @@ extension FormViewController {
             pickerView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
     }
+    
+    private func setupTableViewIfNeeded() {
+        guard type == .result else { return }
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: timeLabel.bottomAnchor,
+                                           constant: 8),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        tableView.reloadData()
+    }
 
     private func setupResultLabelIfNeeded() {
         guard type == .result else { return }
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([
-            resultLabel.topAnchor.constraint(equalTo: indicatorLabel.bottomAnchor),
-            resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
+            resultLabel.topAnchor.constraint(equalTo: headerImage.bottomAnchor),
+            resultLabel.heightAnchor.constraint(equalToConstant: 32),
+            resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
+        
+        view.addSubview(timeLabel)
+        NSLayoutConstraint.activate([
+            timeLabel.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 4),
+            timeLabel.heightAnchor.constraint(equalToConstant: 32),
+            timeLabel.widthAnchor.constraint(equalToConstant: 150),
+            timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
@@ -258,6 +319,47 @@ extension FormViewController: UIPickerViewDataSource {
         subwayGraph[row]
     }
 
+}
+// MARK: Table View
+extension FormViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return resultFromDijkstra.route.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FormTableViewCell", for: indexPath) as! FormTableViewCell
+
+        let stop = resultFromDijkstra.route[indexPath.row]
+        let indexStop = subwayGraph.indexOfVertex(stop)
+        let (subwayLine, subwayLineColor) = verifySubwayLine(indexStop: indexStop!)
+
+        switch indexPath.row {
+        case 0:
+            cell.titleLabel.text = "Embarque"
+            cell.stopLabel.text = resultFromDijkstra.route[indexPath.row]
+            cell.bgTitleView.isHidden = false
+            cell.setupColorBg(isBoarding: true)
+        case resultFromDijkstra.route.count - 1:
+            cell.titleLabel.text = "Desembarque"
+            cell.stopLabel.text = resultFromDijkstra.route[indexPath.row]
+            cell.bgTitleView.isHidden = false
+            cell.setupColorBg(isBoarding: false)
+        default:
+            cell.bgTitleView.isHidden = true
+            cell.stopLabel.text = resultFromDijkstra.route[indexPath.row]
+        }
+        
+        cell.subtitleLabel.text = subwayLine
+        cell.subtitleLabel.textColor = subwayLineColor
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
 }
 
 // MARK: EDGES
@@ -331,7 +433,7 @@ extension FormViewController {
 
 // MARK: SETUP GRAPH
 extension FormViewController {
-    func dijkstra(root: String, destination: String) -> BestWay {
+    func dijkstra(root: String, destination: String) -> ResultDijkstra {
         let (weights, pathDict) = subwayGraph.dijkstra(root: root, startDistance: 0)
         let weightFromRootToVertice: [String: Int?] = distanceArrayToVertexDict(
             distances: weights,
@@ -345,13 +447,29 @@ extension FormViewController {
             pathDict: pathDict
         )
         let stops: [String] = subwayGraph.edgesToVertices(edges: pathResult)
-        let result = BestWay(minimumTime: minimumTimeResult!, route: stops)
-        return result
+        
+        if let minimumTime = minimumTimeResult {
+            resultFromDijkstra.minimumTime = minimumTime
+        }
+        resultFromDijkstra.route = stops
+        
+        return resultFromDijkstra
     }
-}
 
-// MARK: Model for Result
-struct BestWay {
-    let minimumTime: Int
-    let route: [String]
+    func verifySubwayLine(indexStop: Int) -> (String, UIColor) {
+        switch indexStop {
+        case 0...19: // 20
+            return ("Linha Sul", UIColor(red: 0.74, green: 0.05, blue: 0.05, alpha: 1.00))
+        case 20...29: // 10
+            return ("Linha Oeste", UIColor(red: 0.07, green: 0.60, blue: 0.20, alpha: 1.00))
+        case 30...38: // 9
+            return ("VLT Parangaba Mucuripe", UIColor(red: 0.23, green: 0.18, blue: 0.63, alpha: 1.00))
+        case 39...49: // 11
+            return ("Linha Leste", UIColor(red: 0.87, green: 0.51, blue: 0.04, alpha: 1.00))
+        default:
+            break
+        }
+        
+        return ("", UIColor.black)
+    }
 }
