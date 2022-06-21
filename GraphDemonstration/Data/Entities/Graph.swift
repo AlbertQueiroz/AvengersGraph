@@ -11,7 +11,7 @@ import Foundation
 public final class SubwayGraph {
     let graph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(
         vertices: [
-        "LS - Xico da Silva",
+        "Xico da Silva",
         "José de Alencar",
         "São Benedito",
         "Benfica",
@@ -31,7 +31,7 @@ public final class SubwayGraph {
         "Maracanaú",
         "Jereissati",
         "Cartlito Benevides",
-        "LO -Moura Brasil",
+        "Moura Brasil",
         "Álvaro Weyne",
         "Padre Andrade",
         "Antônio Bezerra",
@@ -41,7 +41,7 @@ public final class SubwayGraph {
         "Jurema",
         "Araturi",
         "Caucaia",
-        "VLT PM - Montese",
+        "Montese",
         "Vila União",
         "Borges de Melo",
         "S. João do Tauape",
@@ -50,7 +50,7 @@ public final class SubwayGraph {
         "Papicu",
         "Mucuripe",
         "Iate",
-        "LL - Sé",
+        "Sé",
         "Colégio Militar",
         "Luiza Távora",
         "Nunes Valente",
@@ -72,7 +72,7 @@ public final class SubwayGraph {
 
     // MARK: Linha Sul
     func addEdgesSouthLine() {
-        graph.addEdge(from: "LS - Xico da Silva", to: "José de Alencar", weight: 2)
+        graph.addEdge(from: "Xico da Silva", to: "José de Alencar", weight: 2)
         graph.addEdge(from: "José de Alencar", to: "São Benedito", weight: 2)
         graph.addEdge(from: "São Benedito", to: "Benfica", weight: 2)
         graph.addEdge(from: "Benfica", to: "Padre Cícero", weight: 2)
@@ -95,8 +95,8 @@ public final class SubwayGraph {
 
     // MARK: Linha Oeste
     func addEdgesWestLine() {
-        graph.addEdge(from: "LS - Xico da Silva", to: "LO -Moura Brasil", weight: 1)
-        graph.addEdge(from: "LO -Moura Brasil", to: "Álvaro Weyne", weight: 7)
+        graph.addEdge(from: "Xico da Silva", to: "Moura Brasil", weight: 1)
+        graph.addEdge(from: "Moura Brasil", to: "Álvaro Weyne", weight: 7)
         graph.addEdge(from: "Álvaro Weyne", to: "Padre Andrade", weight: 4)
         graph.addEdge(from: "Padre Andrade", to: "Antônio Bezerra", weight: 3)
         graph.addEdge(from: "Antônio Bezerra", to: "São Miguel", weight: 7)
@@ -110,8 +110,8 @@ public final class SubwayGraph {
     // Centro - Papicu - 15 min
     // MARK: Linha Leste
     func addEdgesEastLine() {
-        graph.addEdge(from: "LS - Xico da Silva", to: "LL - Sé", weight: 3)
-        graph.addEdge(from: "LL - Sé", to: "Colégio Militar", weight: 3)
+        graph.addEdge(from: "Xico da Silva", to: "Sé", weight: 3)
+        graph.addEdge(from: "Sé", to: "Colégio Militar", weight: 3)
         graph.addEdge(from: "Colégio Militar", to: "Luiza Távora", weight: 3)
         graph.addEdge(from: "Luiza Távora", to: "Nunes Valente", weight: 2)
         graph.addEdge(from: "Nunes Valente", to: "Leonardo Mota", weight: 1)
@@ -125,8 +125,8 @@ public final class SubwayGraph {
 
     // MARK: VLT Parangaba-Mucuripe
     func addEdgesVLTLine() {
-        graph.addEdge(from: "Parangaba", to: "VLT PM - Montese", weight: 3)
-        graph.addEdge(from: "VLT PM - Montese", to: "Vila União", weight: 4)
+        graph.addEdge(from: "Parangaba", to: "Montese", weight: 3)
+        graph.addEdge(from: "Montese", to: "Vila União", weight: 4)
         graph.addEdge(from: "Vila União", to: "Borges de Melo", weight: 4)
         graph.addEdge(from: "Borges de Melo", to: "S. João do Tauape", weight: 4)
         graph.addEdge(from: "S. João do Tauape", to: "Pontes Vieira", weight: 5)
