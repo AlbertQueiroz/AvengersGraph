@@ -175,8 +175,8 @@ extension FormViewController {
         view.addSubview(headerImage)
         NSLayoutConstraint.activate([
             headerImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerImage.leftAnchor.constraint(equalTo: view.leftAnchor),
-            headerImage.rightAnchor.constraint(equalTo: view.rightAnchor),
+            headerImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            headerImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             headerImage.heightAnchor.constraint(equalTo: headerImage.widthAnchor)
         ])
     }
