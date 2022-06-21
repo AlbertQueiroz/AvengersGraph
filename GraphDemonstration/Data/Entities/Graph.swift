@@ -11,7 +11,7 @@ import Foundation
 public final class SubwayGraph {
     let graph: WeightedGraph<String, Int> = WeightedGraph<String, Int>(
         vertices: [
-        "Xico da Silva",
+        "Chico da Silva",
         "José de Alencar",
         "São Benedito",
         "Benfica",
@@ -72,7 +72,7 @@ public final class SubwayGraph {
 
     // MARK: Linha Sul
     func addEdgesSouthLine() {
-        graph.addEdge(from: "Xico da Silva", to: "José de Alencar", weight: 2)
+        graph.addEdge(from: "Chico da Silva", to: "José de Alencar", weight: 2)
         graph.addEdge(from: "José de Alencar", to: "São Benedito", weight: 2)
         graph.addEdge(from: "São Benedito", to: "Benfica", weight: 2)
         graph.addEdge(from: "Benfica", to: "Padre Cícero", weight: 2)
@@ -95,7 +95,7 @@ public final class SubwayGraph {
 
     // MARK: Linha Oeste
     func addEdgesWestLine() {
-        graph.addEdge(from: "Xico da Silva", to: "Moura Brasil", weight: 1)
+        graph.addEdge(from: "Chico da Silva", to: "Moura Brasil", weight: 1)
         graph.addEdge(from: "Moura Brasil", to: "Álvaro Weyne", weight: 7)
         graph.addEdge(from: "Álvaro Weyne", to: "Padre Andrade", weight: 4)
         graph.addEdge(from: "Padre Andrade", to: "Antônio Bezerra", weight: 3)
@@ -110,7 +110,7 @@ public final class SubwayGraph {
     // Centro - Papicu - 15 min
     // MARK: Linha Leste
     func addEdgesEastLine() {
-        graph.addEdge(from: "Xico da Silva", to: "Sé", weight: 3)
+        graph.addEdge(from: "Chico da Silva", to: "Sé", weight: 3)
         graph.addEdge(from: "Sé", to: "Colégio Militar", weight: 3)
         graph.addEdge(from: "Colégio Militar", to: "Luiza Távora", weight: 3)
         graph.addEdge(from: "Luiza Távora", to: "Nunes Valente", weight: 2)
